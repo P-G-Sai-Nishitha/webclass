@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+<style type="text/css">
+	.container{
+		width: 60%;
+		height: 400px;
+		margin: auto;
+		box-shadow: 0px 0px 5px 5px #eee;
+		border: 2px solid gray;
+		border-radius: 5px;
+		padding: 15px;
+	}
+</style>
+</head>
+<body>
+	<div class="container">
+		<form>
+			<input type="text" name="stud_name" placeholder="enter your name" class="form-control" id="stud_name">
+			<input type="stud_email" name="stud_email" placeholder="enter your mailid" class="form-control" id="stud_email">
+			<textarea name="stud_address" placeholder="enter student address" class="form_control" id="stud_address"></textarea>
+			<input type="date" name="stud_date" placeholder="enter your birthdate" class="form-control" id="stud_date">
+			<input type="number" name="stud_phoneno" placeholder="enter your phoneno" class="form-control" id="stud_phoneno">
+			
+			<input type="button" name="submit" value="register" class="btn btn-info" id="btn">
+		</form>
+	</div>
+	<script type="text/javascript">
+		$(function(){
+			$('#btn').click(function(){
+				var stud_name=$('#stud_name').val();
+				var stud_email=$('#stud_email').val();
+				var stud_address=$('#stud_address').val();
+				var stud_DOB=$('#stud_DOB').val();
+				var stud_phno=$('#stud_phno').val();
+
+				$.ajax({
+					url:"insert.php",
+					type:'post',
+					data:{
+						stud_name:stud_name,
+						stud_email:stud_email,
+						stud_address:stud_address,
+						stud_DOB:stud_DOB,
+						stud_phno:stud_phno,
+					},
+					success:function(res){
+						console.log(res)
+					},
+					error:function(res){
+						console.log(res)
+					}
+				})
+			})
+		})
+	</script>
+
+</body>
+</html>

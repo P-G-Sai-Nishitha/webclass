@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+</head>
+<body>
+	<table class="table" id="table">
+		<tr>
+			<th>Sl.no</th>
+			<th>student name</th>
+			<th>student email</th>
+			<th>student address</th>
+			<th>student DOB</th>
+			<th>student phno</th>
+		</tr>
+	</table>
+	<!-- <div id="div1"></div> -->
+	<div class="modal fade" id=""myModal></div>
+	<script type="text/javascript">
+		function dele(id){
+			$.ajax({
+				url:'delete.php',
+				type:'get',
+				data:{
+					id:id
+				},
+				success:function(res){
+					alert(res);
+					display();
+				},
+				error:function(res){
+
+				}
+			})
+		}
+		function studentview(id){
+			$.ajax({
+				url:'viewById.php',
+				type:'get',
+				data:{
+					id:id
+				},
+				success:function(res){
+					console(log);
+				},
+				error:function(res){
+
+				}
+
+			})
+		}
+		function display(){
+			$.ajax({
+				url:'view.php',
+				type:'get',
+				data:{
+
+				},
+				success:function(res){
+					console.log(res)
+					var obj = JSON.parse(res);
+					console.log(obj)
+					var table_content=''
+					$('#table').find('tr:not(:first)').remove();
+					$.each(obj,function(index,value){
+						table_content+="<tr>";
+						table_content+="<td>"+value.id+"</td>";
+						table_content+="<td>"+value.stud_name+"</td>";
+						table_content+="<td>"+value.stud_email+"</td>";
+						table_content+="<td>"+value.stud_address+"</td>";
+						table_content+="<td>"+value.stud_DOB+"</td>";
+						table_content+="<td>"+value.stud_phno+"</td>";
+						table_content+="<td><a class='btn btn-primary' href='studentEdit.php?id="+value.id+"'>Edit</a><button class='btn btn-danger' onclick='dele("+value.id+")'>delete</button><button class='btn btn-info' onclick='studentView("+value.id+")'>view</button></td>";
+						table_content+="</tr>";
+					});
+			$("#table").append(table_content);
+			// $.each(obj,function(index,value){
+			// 	table_content+="<div style='border:2px solid gray;padding:20px;box-shadow: 0px 0px 5px 5px #fff;margin:10px'><h2>NAme: "+value.stud_name+"</h2><p>Address: "+value.stud_address+"</p><p>DOB: "+value.stud_DOB+"</p><p>Phone Number: "+value.stud_phno+"</p></div>"
+			// })
+			// $("#div1").append(table_content);
+				},
+				error:function(res){
+
+				}
+			})
+		}
+		display()
+	</script>
+
+</body>
+</html>

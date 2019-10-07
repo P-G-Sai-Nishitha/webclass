@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div id="div1">
+		
+	</div>
+	<script type="text/javascript">
+		function callPage(){
+			$.ajax({
+				url:'abc.html';
+				type:'';
+				data:{
+
+				},
+				success:function(res){
+					$('div1').html(res)
+					console.log(res)
+				},
+				error:function(res){
+					console.log(res)
+				}
+			})
+		}
+		setInterval(callPage,5000)
+	</script>
+
+</body>
+</html>
